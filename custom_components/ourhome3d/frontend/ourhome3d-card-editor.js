@@ -485,7 +485,7 @@ var M=globalThis,B=M.ShadowRoot&&(M.ShadyCSS===void 0||M.ShadyCSS.nativeShadow)&
       border: 1px solid transparent;
     }
     :host([embedded]) .toggle:hover {
-      background: var(--fp3d-field-hover, rgba(127, 127, 127, 0.08));
+      background: var(--oh3d-field-hover, rgba(127, 127, 127, 0.08));
     }
     :host([embedded]) .toggle:has(input:checked) {
       border-color: color-mix(in srgb, var(--primary-color) 45%, transparent);

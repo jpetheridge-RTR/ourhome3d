@@ -369,4 +369,4 @@ var oe=globalThis,re=oe.ShadowRoot&&(oe.ShadyCSS===void 0||oe.ShadyCSS.nativeSha
     h4 {
       margin: 12px 0 4px;
     }
-  `};customElements.get("fp3d-locate-setup")||customElements.define("fp3d-locate-setup",xe);function Qn(r,e,t,n){document.querySelector("fp3d-locate-setup")?.remove();let i=document.createElement("fp3d-locate-setup");i.hass=r,i.hassSource=t??null,i.setLook=n??null,i.building=e,document.body.append(i)}export{Qn as openLocateSetup};
+  `};customElements.get("oh3d-locate-setup")||customElements.define("oh3d-locate-setup",xe);function Qn(r,e,t,n){document.querySelector("oh3d-locate-setup")?.remove();let i=document.createElement("oh3d-locate-setup");i.hass=r,i.hassSource=t??null,i.setLook=n??null,i.building=e,document.body.append(i)}export{Qn as openLocateSetup};

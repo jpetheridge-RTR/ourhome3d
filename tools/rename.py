@@ -19,6 +19,8 @@ for dp, dn, fn in os.walk(root):
         s = s.replace('@@KEEPFP@@', 'neonplan3d')
         s = brand.sub('Our Home 3D', s)
         s = s.replace('f"NeonPlan3D/{', 'f"OurHome3D/{')
+        # its own element names, so it never borrows NeonPlan's components when both are loaded
+        s = s.replace('fp3d-', 'oh3d-').replace('fp3dReloadSent', 'oh3dReloadSent')
         if s != o:
             counts[p] = (len(pat.findall(o)), len(brand.findall(o)))
             open(p, 'w', encoding='utf-8').write(s)

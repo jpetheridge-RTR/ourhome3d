@@ -10,7 +10,8 @@ report problems with it to the NeonPlan 3D project.
 ## What is different from NeonPlan 3D
 
 - **Its own name and domain:** `ourhome3d` (panel "Our Home 3D" at `/ourhome3d`, card `custom:ourhome3d-card`), so
-  NeonPlan 3D updates never overwrite it.
+  NeonPlan 3D updates never overwrite it. Its page components are `oh3d-*` (NeonPlan's are `fp3d-*`), so the two
+  never borrow each other's parts when both are loaded.
 - **Built-in furniture:** every pack file in `custom_components/ourhome3d/furniture/` loads at start-up without a
   shop signature, because it ships with the code. These files may only hold furniture (no Pro features and no module
   code). Packs imported from a file still need a valid signature, as in NeonPlan 3D.
@@ -47,7 +48,7 @@ or a palette role (`wood`, `fabric`, `white`, `metal`, `dark`, `glass`, ...) tha
 
 New NeonPlan 3D releases are not picked up automatically. To take one over: check out the new release of
 `Mastershort/neonplan3d`, copy `custom_components/neonplan3d` over `custom_components/ourhome3d`, run
-`tools/rename.py` on it, and re-apply the built-in furniture loader (`load_builtin_packs` in `packs.py` and its two
+`tools/rename.py` on it, then `tools/restamp.py` (re-stamps the bundle versions), and re-apply the built-in furniture loader (`load_builtin_packs` in `packs.py` and its two
 uses in `storage.py`). Keep `furniture/` and the manifest fields.
 
 ## Licence
