@@ -315,7 +315,7 @@ po.box(-0.075, 0.075, -0.075, 0.075, 0, 3.2, WHITE, fix="wd")
 
 # ---------------------------------------------------------------- outside
 STAIN, STAIN_TOP, RAIL_BLACK = "#7a4a2a", "#8a5634", "#1a1a1a"
-W, D, H = 3.92, 3.51, 1.06
+W, D, H = 3.92, 3.51, 2.65
 dk = item("deck_covered", "Back deck (stained, black balusters)", (W, D, H), group="outdoor", room=["patio", "outdoor"],
           tags=["deck", "railing", "porch"], surface=True)
 dk.box(-W/2, W/2, -D/2, D/2, 0, 0.045, STAIN, top=STAIN_TOP)               # floor boards
@@ -326,8 +326,10 @@ dk.box(-W/2, -W/2 + 0.09, -D/2, D/2, 0.98, 1.04, STAIN)                      # l
 dk.box(-W/2 + 0.02, -W/2 + 0.07, -D/2, D/2, 0.1, 0.14, STAIN)
 dk.box(W/2 - 0.09, W/2, -D/2, D/2 - GAP, 0.98, 1.04, STAIN)                  # right top rail (up to the stairs)
 dk.box(W/2 - 0.07, W/2 - 0.02, -D/2, D/2 - GAP, 0.1, 0.14, STAIN)
-for x, z in ((-W/2, D/2 - 0.1), (W/2 - 0.1, D/2 - 0.1), (W/2 - 0.1, D/2 - GAP - 0.1)):
-    dk.box(x, x + 0.1, z, z + 0.1, 0.045, 1.06, STAIN)                       # posts
+for x, z in ((-W/2, D/2 - 0.14), (W/2 - 0.14, D/2 - 0.14)):
+    dk.box(x, x + 0.14, z, z + 0.14, 0.045, 2.65, STAIN)                     # roof posts at the outer corners
+dk.box(W/2 - 0.1, W/2, D/2 - GAP - 0.1, D/2 - GAP, 0.045, 1.06, STAIN)        # newel post at the stairs
+dk.box(-W/2, W/2, D/2 - 0.16, D/2, 2.45, 2.65, "#f2f2ef")                     # white header beam
 for i in range(15):                                                          # front balusters
     x = -W/2 + 0.2 + i * (W - 0.4) / 14
     dk.box(x - 0.012, x + 0.012, D/2 - 0.055, D/2 - 0.03, 0.14, 0.98, RAIL_BLACK)
@@ -337,6 +339,18 @@ for i in range(13):                                                          # l
 for i in range(8):                                                           # right balusters
     z = -D/2 + 0.15 + i * (D - GAP - 0.3) / 7
     dk.box(W/2 - 0.06, W/2 - 0.035, z - 0.012, z + 0.012, 0.14, 0.98, RAIL_BLACK)
+
+W, D, H = 0.2, 0.2, 2.6
+cp = item("cedar_post", "Cedar porch post", (W, D, H), group="outdoor", room=["porch", "outdoor"], tags=["post", "porch", "column"])
+cp.box(-0.1, 0.1, -0.1, 0.1, 0, 0.12, "#2a2a2a", fix="wdh").box(-0.08, 0.08, -0.08, 0.08, 0.12, 2.5, "#a8683a", fix="wd")
+cp.box(-0.1, 0.1, -0.1, 0.1, 2.5, 2.6, "#a8683a", fix="wdh")
+
+W, D, H = 2.0, 0.06, 0.95
+pr = item("porch_railing", "Porch railing (black)", (W, D, H), group="outdoor", room=["porch", "outdoor"], tags=["railing", "porch"])
+pr.box(-W/2, W/2, -0.03, 0.03, 0.88, 0.95, "#1a1a1a", fix="h").box(-W/2, W/2, -0.02, 0.02, 0.08, 0.12, "#1a1a1a", fix="h")
+for i in range(15):
+    x = -W/2 + 0.08 + i * (W - 0.16) / 14
+    pr.box(x - 0.01, x + 0.01, -0.01, 0.01, 0.12, 0.88, "#1a1a1a")
 
 W, D, H = 1.0, 3.65, 3.5
 st = item("deck_stairs", "Deck stairs (stained, black balusters)", (W, D, H), group="outdoor", room=["patio", "outdoor"],
