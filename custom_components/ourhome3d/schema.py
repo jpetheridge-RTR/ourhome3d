@@ -95,6 +95,8 @@ ROOM_SCHEMA = vol.Schema(
             None, vol.All([vol.Any(None, vol.All(str, vol.Length(max=16)))], vol.Length(max=MAX_POINTS))
         ),
         vol.Optional("wall_color"): vol.Any(None, vol.All(str, vol.Length(max=16))),
+        # Our Home 3D: tint of the floor ("#rrggbb", None = the material's own colour), e.g. dark slate tiles
+        vol.Optional("floor_color"): vol.Any(None, vol.Match(r"^#[0-9a-fA-F]{6}$")),
         # thickness of the wall on each edge in m (None = the building's exterior / interior thickness)
         vol.Optional("wall_thickness"): vol.All(
             [vol.Any(None, vol.All(vol.Coerce(float), vol.Range(min=0.02, max=1.5)))],
