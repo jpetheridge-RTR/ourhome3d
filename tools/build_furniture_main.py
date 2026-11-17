@@ -128,6 +128,15 @@ bs.box(-0.5, 0.5, -0.006, 0.006, 0, 0.48, "#2c2f33")
 for y in (0.12, 0.24, 0.36):
     bs.box(-0.5, 0.5, 0.005, 0.007, y - 0.004, y + 0.004, "#45494e")
 
+# ---------------------------------------------------------------- TVs
+W, D, H = 1.65, 0.06, 0.95
+tv = item("tv_flat", "Flat TV (black bezel, wall-mounted)", (W, D, H), mount="wall", wall_y=1.75, group="media",
+          room=["living", "bedroom", "basement"], tags=["tv", "television", "screen"], electric=True)
+tv.box(-0.15, 0.15, -D/2, -D/2 + 0.025, 0.3, 0.65, "#2a2a2a")                     # wall bracket
+tv.box(-W/2, W/2, -D/2 + 0.025, D/2 - 0.01, 0, H, "#111111", fix="wh")             # body and bezel
+tv.box(-W/2 + 0.015, W/2 - 0.015, D/2 - 0.01, D/2, 0.015, H - 0.015, "#050607", screen=True)   # screen
+tv.box(-0.04, 0.04, D/2 - 0.012, D/2, 0.0, 0.012, "#3a3a3a")                       # logo / IR window
+
 # ---------------------------------------------------------------- living
 W, D, H = 1.9, 0.25, 3.0
 fp = item("stone_fireplace", "Stone fireplace with mantel", (W, D, H), group="living", room=["living"],
