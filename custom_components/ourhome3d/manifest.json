@@ -1,0 +1,25 @@
+{
+  "domain": "ourhome3d",
+  "name": "Our Home 3D",
+  "after_dependencies": [
+    "bluetooth",
+    "recorder"
+  ],
+  "codeowners": [
+    "@jpetheridge-RTR"
+  ],
+  "config_flow": true,
+  "dependencies": [
+    "frontend",
+    "http",
+    "panel_custom",
+    "websocket_api"
+  ],
+  "documentation": "https://github.com/jpetheridge-RTR/ourhome3d",
+  "integration_type": "service",
+  "iot_class": "calculated",
+  "issue_tracker": "https://github.com/jpetheridge-RTR/ourhome3d/issues",
+  "requirements": [],
+  "single_config_entry": true,
+  "version": "3.4.3"
+}
