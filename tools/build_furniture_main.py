@@ -313,6 +313,92 @@ po = item("post_column", "Support post (white)", (0.15, 0.15, 3.2), group="struc
           tags=["post", "column", "pillar"])
 po.box(-0.075, 0.075, -0.075, 0.075, 0, 3.2, WHITE, fix="wd")
 
+# ---------------------------------------------------------------- outside
+STAIN, STAIN_TOP, RAIL_BLACK = "#7a4a2a", "#8a5634", "#1a1a1a"
+W, D, H = 3.92, 3.51, 1.06
+dk = item("deck_covered", "Back deck (stained, black balusters)", (W, D, H), group="outdoor", room=["patio", "outdoor"],
+          tags=["deck", "railing", "porch"], surface=True)
+dk.box(-W/2, W/2, -D/2, D/2, 0, 0.045, STAIN, top=STAIN_TOP)               # floor boards
+GAP = 1.15                                                                   # stair opening on the +x side, front end
+dk.box(-W/2, W/2, D/2 - 0.09, D/2, 0.98, 1.04, STAIN)                        # front top rail
+dk.box(-W/2, W/2, D/2 - 0.07, D/2 - 0.02, 0.1, 0.14, STAIN)                  # front bottom rail
+dk.box(-W/2, -W/2 + 0.09, -D/2, D/2, 0.98, 1.04, STAIN)                      # left top rail
+dk.box(-W/2 + 0.02, -W/2 + 0.07, -D/2, D/2, 0.1, 0.14, STAIN)
+dk.box(W/2 - 0.09, W/2, -D/2, D/2 - GAP, 0.98, 1.04, STAIN)                  # right top rail (up to the stairs)
+dk.box(W/2 - 0.07, W/2 - 0.02, -D/2, D/2 - GAP, 0.1, 0.14, STAIN)
+for x, z in ((-W/2, D/2 - 0.1), (W/2 - 0.1, D/2 - 0.1), (W/2 - 0.1, D/2 - GAP - 0.1)):
+    dk.box(x, x + 0.1, z, z + 0.1, 0.045, 1.06, STAIN)                       # posts
+for i in range(15):                                                          # front balusters
+    x = -W/2 + 0.2 + i * (W - 0.4) / 14
+    dk.box(x - 0.012, x + 0.012, D/2 - 0.055, D/2 - 0.03, 0.14, 0.98, RAIL_BLACK)
+for i in range(13):                                                          # left balusters
+    z = -D/2 + 0.15 + i * (D - 0.35) / 12
+    dk.box(-W/2 + 0.035, -W/2 + 0.06, z - 0.012, z + 0.012, 0.14, 0.98, RAIL_BLACK)
+for i in range(8):                                                           # right balusters
+    z = -D/2 + 0.15 + i * (D - GAP - 0.3) / 7
+    dk.box(W/2 - 0.06, W/2 - 0.035, z - 0.012, z + 0.012, 0.14, 0.98, RAIL_BLACK)
+
+W, D, H = 1.0, 3.65, 3.5
+st = item("deck_stairs", "Deck stairs (stained, black balusters)", (W, D, H), group="outdoor", room=["patio", "outdoor"],
+          tags=["stairs", "deck", "steps"])
+N = 14
+rise, run = 2.5 / N, D / (N - 1)
+for i in range(N - 1):
+    y = (i + 1) * rise
+    z1 = D/2 - i * run
+    st.box(-0.45, 0.45, z1 - run - 0.02, z1, y - 0.04, y, STAIN, top=STAIN_TOP)        # treads
+for x in (-0.5, 0.42):
+    st.loft(x, x + 0.08, D/2 - 0.35, D/2, 0.0, 2.5, STAIN, top=(x, x + 0.08, -D/2, -D/2 + 0.35))   # stringers
+    st.loft(x, x + 0.08, D/2 - 0.06, D/2, 0.95, 3.45, STAIN, top=(x, x + 0.08, -D/2, -D/2 + 0.06))  # handrails
+    st.box(x, x + 0.08, D/2 - 0.1, D/2, 0, 1.0, STAIN)                                    # bottom posts
+    for k in range(1, 9):
+        z = D/2 - k * (D / 9)
+        yb = (D/2 - z) / run * rise
+        st.box(x + 0.03, x + 0.05, z - 0.012, z + 0.012, yb, yb + 0.95, RAIL_BLACK)       # balusters
+
+W, D, H = 1.45, 0.62, 1.15
+gr = item("grill_covered", "Gas grill (covered)", (W, D, H), group="outdoor", room=["patio", "outdoor"],
+          tags=["grill", "bbq", "barbecue"])
+gr.box(-0.55, 0.55, -0.28, 0.28, 0.12, 0.85, "#1f1f20")
+gr.loft(-0.6, 0.6, -0.31, 0.31, 0.85, 1.15, "#252526", top=(-0.5, 0.5, -0.18, 0.18))
+gr.box(-0.72, -0.55, -0.25, 0.25, 0.8, 0.86, "#2b2b2c").box(0.55, 0.72, -0.25, 0.25, 0.8, 0.86, "#2b2b2c")
+for x in (-0.5, 0.42):
+    gr.cyl(x, x + 0.08, 0.16, 0.28, 0.0, 0.12, "#111111", axis="x")
+
+W, D, H = 0.75, 0.95, 0.95
+ac = item("adirondack_chair", "Adirondack chair (wood)", (W, D, H), group="outdoor", room=["patio", "outdoor"],
+          tags=["adirondack", "chair", "patio"])
+WOOD = "#9a7650"
+ac.loft(-0.3, 0.3, -0.25, 0.4, 0.3, 0.36, WOOD, top=(-0.3, 0.3, -0.25, 0.4))            # seat
+ac.loft(-0.3, 0.3, -0.38, -0.25, 0.3, 0.95, WOOD, top=(-0.28, 0.28, -0.47, -0.38))       # back, leaning back
+for x in (-0.375, 0.29):
+    ac.box(x, x + 0.085, -0.25, 0.45, 0.58, 0.62, WOOD)                                    # arms
+    ac.box(x + 0.02, x + 0.07, 0.3, 0.36, 0, 0.58, WOOD)                                   # front legs
+    ac.loft(x + 0.02, x + 0.07, -0.2, 0.42, 0.0, 0.3, WOOD, top=(x + 0.02, x + 0.07, -0.3, 0.3))   # side rails
+
+W, D, H = 2.0, 2.0, 3.6
+tt = item("young_tree", "Young tree", (W, D, H), group="outdoor", room=["garden", "outdoor"], tags=["tree"])
+tt.cyl(-0.05, 0.05, -0.05, 0.05, 0, 2.0, "#6b5034")
+tt.loft(-0.7, 0.7, -0.7, 0.7, 1.5, 2.6, "#7c9a4e", top=(-0.95, 0.95, -0.95, 0.95))
+tt.loft(-0.95, 0.95, -0.95, 0.95, 2.6, 3.6, "#86a556", top=(-0.25, 0.25, -0.25, 0.25))
+
+W, D, H = 0.9, 0.9, 0.75
+sh = item("shrub", "Shrub (evergreen)", (W, D, H), group="outdoor", room=["garden", "outdoor"], tags=["shrub", "bush", "plant"])
+sh.cyl(-0.42, 0.42, -0.42, 0.42, 0, 0.45, "#3f6b3a").loft(-0.42, 0.42, -0.42, 0.42, 0.45, 0.75, "#4a7a42", top=(-0.15, 0.15, -0.15, 0.15))
+
+W, D, H = 1.0, 0.08, 1.0
+sw = item("stone_wainscot", "Stacked stone wainscot", (W, D, H), mount="wall", wall_y=0.0, group="structure",
+          room=["outdoor", "facade"], tags=["stone", "wainscot", "veneer", "facade"])
+sw.box(-0.5, 0.5, -0.04, 0.0, 0, 0.94, "#8e8d89")
+TONES = ["#a7a5a0", "#6f6e6a", "#bcb9b2", "#7f7d78", "#9a9893", "#5f5e5b"]
+k = 0
+for r, (y0, y1) in enumerate(((0.02, 0.2), (0.22, 0.37), (0.39, 0.56), (0.58, 0.73), (0.75, 0.92))):
+    xs = (-0.5, -0.2, 0.15, 0.5) if r % 2 == 0 else (-0.5, -0.05, 0.3, 0.5)
+    for a, b in zip(xs, xs[1:]):
+        sw.box(a + 0.01, b - 0.01, 0.0, 0.03, y0, y1, TONES[k % len(TONES)])
+        k += 1
+sw.box(-0.5, 0.5, -0.04, 0.04, 0.94, 1.0, "#c9c6bf", fix="h")              # cap
+
 pack = {
     "format": "fp3dpack", "version": 1, "id": "ourhome.main", "name": "Our main floor",
     "publisher": "Our Home 3D", "release": 1,
